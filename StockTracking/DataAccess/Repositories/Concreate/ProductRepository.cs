@@ -19,17 +19,57 @@ public class ProductRepository : EfRepositoryBase<BaseDbContext, Product, Guid>,
 
     public List<ProductDetailDto> GetAllProductDetails()
     {
-        var details = Context.Products
-
+        var details = Context.Products.Join(
+            Context.Categories,
+            p => p.CategoryId,
+            c => c.Id,
+            (product, category) => new ProductDetailDto
+            {
+                Name = product.Name,
+                CategoryName = category.Name,
+                Id = product.Id,
+                Price = product.Price,
+                Stock = product.Stock
+            }).ToList();
+        return details;
     }
 
     public List<ProductDetailDto> GetDetailsByCategoryId(int categoryId)
     {
-        throw new NotImplementedException();
+        var details = Context.Products.Where(c=>c.CategoryId == categoryId).Join(
+           Context.Categories,
+           p => p.CategoryId,
+           c => c.Id,
+           (product, category) => new ProductDetailDto
+           {
+               Name = product.Name,
+               CategoryName = category.Name,
+               Id = product.Id,
+               Price = product.Price,
+               Stock = product.Stock
+
+           }).ToList();
+
+        return details;
+
+    }
+    public ProductDetailDto GetProductDetails(Guid Id)
+    {
+        var details = Context.Products.Where(p => p.Id == Id).Select(
+            product => new ProductDetailDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                CategoryName=product.Category.Name,
+                Price = product.Price,
+                Stock = product.Stock
+            }).FirstOrDefault();
+        return details;
+            
+            
+
+            
     }
 
-    public ProductDetailDto GetProductDetails(int Id)
-    {
-        throw new NotImplementedException();
-    }
+
 }

@@ -8,5 +8,5 @@ public interface IProductRepository : IEntityRepository<Product,Guid>
 {
     List<ProductDetailDto> GetAllProductDetails();
     List<ProductDetailDto> GetDetailsByCategoryId(int categoryId);
-    ProductDetailDto GetProductDetails(int Id);
+    ProductDetailDto GetProductDetails(Guid Id);
 }
