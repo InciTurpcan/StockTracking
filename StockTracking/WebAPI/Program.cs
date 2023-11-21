@@ -1,3 +1,12 @@
+using DataAccess;
+using DataAccess.Context;
+using DataAccess.Repositories.Abstract;
+using DataAccess.Repositories.Concreate;
+using Microsoft.EntityFrameworkCore;
+using Service;
+using Service.Abstract;
+using Service.Concrete;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +15,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDataAccessDependencies(builder.Configuration);
+builder.Services.AddServiceDependencies();
+
+
+
+
 
 var app = builder.Build();
 

@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\CorePackeages\CoreCrossCuttingConcerns\CoreCrossCuttingConcerns.csproj" />
+    <ProjectReference Include="..\..\CorePackeages\CoreShared\CoreShared.csproj" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
+  </ItemGroup>
+
 </Project>
