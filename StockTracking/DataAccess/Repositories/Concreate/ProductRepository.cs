@@ -24,7 +24,7 @@ public class ProductRepository : EfRepositoryBase<BaseDbContext, Product, Guid>,
             p => p.CategoryId,
             c => c.Id,
             (product, category) => new ProductDetailDto
-            {
+            { 
                 Name = product.Name,
                 CategoryName = category.Name,
                 Id = product.Id,

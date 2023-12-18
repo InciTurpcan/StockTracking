@@ -1,5 +1,6 @@
 ﻿using CoreCrossCuttingConcerns.Exceptions;
 using DataAccess.Repositories.Abstract;
+using Service.BusinessRules.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Service.BusinessRules;
 
-public class ProductRules
+public class ProductRules : IProductRules
 {
     private readonly IProductRepository _productRepository;
 
